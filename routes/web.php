@@ -3,11 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+// Admin Controllers
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PermissionsController as AdminPermissionController;
 use App\Http\Controllers\Admin\RolesController as AdminRolesController;
 use App\Http\Controllers\Admin\UsersController as AdminUsersController;
 use App\Http\Controllers\Auth\ChangePasswordController as AuthChangePasswordController;
+
+// User Controllers
+use App\Http\Controllers\Users\AuthController as UserAuthController;
 
 // Testing Siam Auth Controller
 use App\Http\Controllers\SiamAuthController;
@@ -23,16 +27,9 @@ use App\Http\Controllers\SiamAuthController;
 |
 */
 
-Route::redirect('/', '/login');
-Route::get('/home', function () {
-    if (session('status')) {
-        return redirect()->route('admin.home')->with('status', session('status'));
-    }
-
-    return redirect()->route('admin.home');
-});
-
 Auth::routes(['register' => false]);
+Route::redirect('/', '/login');
+
 
 // Admin Route
 Route::prefix('admin')
@@ -55,6 +52,7 @@ Route::prefix('admin')
         Route::resource('users', AdminUsersController::class);
     });
 
+// Profile Route
 Route::prefix('profile')
     ->as('profile.')
     ->middleware(['auth'])
@@ -67,7 +65,16 @@ Route::prefix('profile')
         }
     });
 
+Route::as('user.')
+    ->middleware([])
+    ->prefix('pemilwa-fk') // Hardcoded
+    ->group(function () {
+        Route::view('/', 'welcome');
 
+        // User Login
+        Route::get('/login', [UserAuthController::class, 'login'])->name('login');
+        Route::post('/auth', [UserAuthController::class, 'auth'])->name('auth');
+    });
 
 
 
