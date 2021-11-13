@@ -8,6 +8,12 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PermissionsController as AdminPermissionController;
 use App\Http\Controllers\Admin\RolesController as AdminRolesController;
 use App\Http\Controllers\Admin\UsersController as AdminUsersController;
+use App\Http\Controllers\Admin\PesertaController as AdminPesertaController;
+use App\Http\Controllers\Admin\CalonController as AdminCalonController;
+use App\Http\Controllers\Admin\PaslonController as AdminPaslonController;
+use App\Http\Controllers\Admin\SuaraController as AdminSuaraController;
+
+// Auth Gate
 use App\Http\Controllers\Auth\ChangePasswordController as AuthChangePasswordController;
 
 // User Controllers
@@ -58,6 +64,24 @@ Route::prefix('admin')
         // Users
         Route::delete('users/destroy', [AdminUsersController::class, 'massDestroy'])->name('users.massDestroy');
         Route::resource('users', AdminUsersController::class);
+
+        // Peserta
+        Route::delete('peserta/destroy', [AdminPesertaController::class, 'massDestroy'])->name('peserta.massDestroy');
+        Route::resource('peserta', AdminPesertaController::class);
+
+        // Calon
+        Route::delete('calons/destroy', [AdminCalonController::class, 'massDestroy'])->name('calons.massDestroy');
+        Route::post('calons/media', [AdminCalonController::class, 'storeMedia'])->name('calons.storeMedia');
+        Route::post('calons/ckmedia', [AdminCalonController::class, 'storeCKEditorImages'])->name('calons.storeCKEditorImages');
+        Route::resource('calons', AdminCalonController::class);
+
+        // Paslon
+        Route::delete('paslons/destroy', [AdminPaslonController::class, 'massDestroy'])->name('paslons.massDestroy');
+        Route::resource('paslons', AdminPaslonController::class);
+
+        // Suara
+        Route::delete('suaras/destroy', [AdminSuaraController::class, 'massDestroy'])->name('suaras.massDestroy');
+        Route::resource('suaras', AdminSuaraController::class);
     });
 
 // Profile Route
