@@ -25,6 +25,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.paslon.fields.name') }}
+                        </th>
+                        <td>
+                            {{ $paslon->name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.paslon.fields.visi') }}
                         </th>
                         <td>

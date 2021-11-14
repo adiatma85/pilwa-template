@@ -38,6 +38,9 @@
                             {{ trans('cruds.calon.fields.type') }}
                         </th>
                         <th>
+                            {{ trans('cruds.calon.fields.paslon') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -66,6 +69,9 @@
                             </td>
                             <td>
                                 {{ App\Models\Calon::TYPE_SELECT[$calon->type] ?? '' }}
+                            </td>
+                            <td>
+                                {{ $calon->paslon->name ?? '' }}
                             </td>
                             <td>
                                 @can('calon_show')

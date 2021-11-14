@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyCalonRequest;
 use App\Http\Requests\StoreCalonRequest;
 use App\Http\Requests\UpdateCalonRequest;
 use App\Models\Calon;
+use App\Models\Paslon;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -21,7 +22,7 @@ class CalonController extends Controller
     {
         abort_if(Gate::denies('calon_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $calons = Calon::with(['media'])->get();
+        $calons = Calon::with(['paslon', 'media'])->get();
 
         return view('admin.calons.index', compact('calons'));
     }
@@ -30,7 +31,9 @@ class CalonController extends Controller
     {
         abort_if(Gate::denies('calon_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.calons.create');
+        $paslons = Paslon::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.calons.create', compact('paslons'));
     }
 
     public function store(StoreCalonRequest $request)
@@ -52,7 +55,11 @@ class CalonController extends Controller
     {
         abort_if(Gate::denies('calon_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.calons.edit', compact('calon'));
+        $paslons = Paslon::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $calon->load('paslon');
+
+        return view('admin.calons.edit', compact('paslons', 'calon'));
     }
 
     public function update(UpdateCalonRequest $request, Calon $calon)
@@ -76,6 +83,8 @@ class CalonController extends Controller
     public function show(Calon $calon)
     {
         abort_if(Gate::denies('calon_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $calon->load('paslon');
 
         return view('admin.calons.show', compact('calon'));
     }

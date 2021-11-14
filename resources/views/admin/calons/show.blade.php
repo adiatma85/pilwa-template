@@ -67,6 +67,14 @@
                             {{ App\Models\Calon::TYPE_SELECT[$calon->type] ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.calon.fields.paslon') }}
+                        </th>
+                        <td>
+                            {{ $calon->paslon->name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

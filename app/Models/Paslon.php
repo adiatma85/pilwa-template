@@ -21,6 +21,7 @@ class Paslon extends Model
     ];
 
     protected $fillable = [
+        'name',
         'visi',
         'misi',
         'created_at',

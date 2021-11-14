@@ -38,6 +38,7 @@ class Calon extends Model implements HasMedia
         'visi',
         'misi',
         'type',
+        'paslon_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -59,6 +60,11 @@ class Calon extends Model implements HasMedia
         }
 
         return $file;
+    }
+
+    public function paslon()
+    {
+        return $this->belongsTo(Paslon::class, 'paslon_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

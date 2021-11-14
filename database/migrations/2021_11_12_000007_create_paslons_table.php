@@ -10,6 +10,7 @@ class CreatePaslonsTable extends Migration
     {
         Schema::create('paslons', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->nullable();
             $table->string('visi')->nullable();
             $table->longText('misi')->nullable();
             $table->timestamps();

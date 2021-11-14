@@ -57,6 +57,18 @@
                 <span class="help-block">{{ trans('cruds.calon.fields.type_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="paslon_id">{{ trans('cruds.calon.fields.paslon') }}</label>
+                <select class="form-control select2 {{ $errors->has('paslon') ? 'is-invalid' : '' }}" name="paslon_id" id="paslon_id">
+                    @foreach($paslons as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('paslon_id') ? old('paslon_id') : $calon->paslon->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('paslon'))
+                    <span class="text-danger">{{ $errors->first('paslon') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.calon.fields.paslon_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

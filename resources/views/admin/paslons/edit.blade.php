@@ -11,6 +11,14 @@
             @method('PUT')
             @csrf
             <div class="form-group">
+                <label for="name">{{ trans('cruds.paslon.fields.name') }}</label>
+                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $paslon->name) }}">
+                @if($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.paslon.fields.name_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="visi">{{ trans('cruds.paslon.fields.visi') }}</label>
                 <input class="form-control {{ $errors->has('visi') ? 'is-invalid' : '' }}" type="text" name="visi" id="visi" value="{{ old('visi', $paslon->visi) }}">
                 @if($errors->has('visi'))
