@@ -36,7 +36,7 @@
                             {{ trans('cruds.paslon.fields.misi') }}
                         </th>
                         <td>
-                            {{ $paslon->misi }}
+                            {!! $paslon->misi !!}
                         </td>
                     </tr>
                 </tbody>

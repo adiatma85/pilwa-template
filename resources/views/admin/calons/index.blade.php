@@ -32,9 +32,6 @@
                             {{ trans('cruds.calon.fields.visi') }}
                         </th>
                         <th>
-                            {{ trans('cruds.calon.fields.misi') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.calon.fields.image') }}
                         </th>
                         <th>
@@ -59,9 +56,6 @@
                             </td>
                             <td>
                                 {{ $calon->visi ?? '' }}
-                            </td>
-                            <td>
-                                {{ $calon->misi ?? '' }}
                             </td>
                             <td>
                                 @if($calon->image)

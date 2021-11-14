@@ -29,9 +29,6 @@
                             {{ trans('cruds.paslon.fields.visi') }}
                         </th>
                         <th>
-                            {{ trans('cruds.paslon.fields.misi') }}
-                        </th>
-                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -47,9 +44,6 @@
                             </td>
                             <td>
                                 {{ $paslon->visi ?? '' }}
-                            </td>
-                            <td>
-                                {{ $paslon->misi ?? '' }}
                             </td>
                             <td>
                                 @can('paslon_show')

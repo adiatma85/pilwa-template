@@ -11,7 +11,7 @@ class CreatePaslonsTable extends Migration
         Schema::create('paslons', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('visi')->nullable();
-            $table->string('misi')->nullable();
+            $table->longText('misi')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

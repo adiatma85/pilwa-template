@@ -77,6 +77,8 @@ Route::prefix('admin')
 
         // Paslon
         Route::delete('paslons/destroy', [AdminPaslonController::class, 'massDestroy'])->name('paslons.massDestroy');
+        Route::post('paslons/media', [AdminPaslonController::class, 'storeMedia'])->name('paslons.storeMedia');
+        Route::post('paslons/ckmedia', [AdminPaslonController::class, 'storeCKEditorImages'])->name('paslons.storeCKEditorImages');
         Route::resource('paslons', AdminPaslonController::class);
 
         // Suara

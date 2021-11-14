@@ -44,7 +44,7 @@
                             {{ trans('cruds.calon.fields.misi') }}
                         </th>
                         <td>
-                            {{ $calon->misi }}
+                            {!! $calon->misi !!}
                         </td>
                     </tr>
                     <tr>

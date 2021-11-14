@@ -12,7 +12,7 @@ class CreateCalonsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('visi')->nullable();
-            $table->string('misi')->nullable();
+            $table->longText('misi')->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
             $table->softDeletes();
