@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'pemilwa-template',
+    'site_title' => 'Pemilwa Fakultas Kedokteran',
 ];
