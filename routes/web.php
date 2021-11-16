@@ -120,3 +120,8 @@ Route::as('user.')
 // Testing Auth Siam Controller
 // Route::post('/testing-siam-auth', [SiamAuthController::class, 'auth']);
 Route::get('/testing-siam-auth', [SiamAuthController::class, 'auth']);
+
+// Testing View
+Route::view('/presbem', 'suara.presbem');
+Route::view('/dpm', 'suara.dpm');
+Route::view('/after', 'suara.after');
