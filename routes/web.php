@@ -108,6 +108,11 @@ Route::as('user.')
         // User Login
         Route::get('/login', [UserAuthController::class, 'login'])->name('login');
         Route::post('/auth', [UserAuthController::class, 'auth'])->name('auth');
+
+        Route::get('/testing-session-open', [UserAuthController::class, 'testingSessionAuth']);
+        Route::get('/testing-session-close', [UserAuthController::class, 'closeAuth']);
+
+        // Pemilihan Controller
     });
 
 

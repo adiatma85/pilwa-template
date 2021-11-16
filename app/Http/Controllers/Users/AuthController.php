@@ -22,6 +22,25 @@ class AuthController extends Controller
             'nim' => $request->nim,
             'password' => $request->password,
         ];
+        $request->session()->put('nim', $request->nim);
         return $this->siamAuth($credentials);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        // return view buat ucapin terima kasih telah berkontribusi
+    }
+
+    public function testingSessionAuth(Request $request)
+    {
+        return response()->json([
+            'nim' => $request->session()->get('nim', 'nim kosong'),
+        ]);
+    }
+
+    public function closeAuth(Request $request)
+    {
+        $request->session()->flush();
     }
 }
