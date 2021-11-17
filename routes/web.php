@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\ChangePasswordController as AuthChangePasswordCont
 
 // User Controllers
 use App\Http\Controllers\Users\AuthController as UserAuthController;
+use App\Http\Controllers\Users\PemilihanController as UserPemilwaController;
 
 // Testing Siam Auth Controller
 use App\Http\Controllers\SiamAuthController;
@@ -108,11 +109,29 @@ Route::as('user.')
         // User Login
         Route::get('/login', [UserAuthController::class, 'login'])->name('login');
         Route::post('/auth', [UserAuthController::class, 'auth'])->name('auth');
+        Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
+
+        // Group kotak-suara
+        Route::prefix('kotak-suara')
+            // ->middleware(null)
+            ->as('kotak-suara.')
+            ->group(function () {
+
+                // Pemilihan Controller
+
+                //  BEM
+                Route::get('/bem', [UserPemilwaController::class, 'indexBem'])->name('indexBem');
+                Route::post('/bem', [[UserPemilwaController::class, 'storeBem']])->name('storeBem');
+
+                // // DPM
+                Route::get('/dpm', [UserPemilwaController::class, 'indexDpm'])->name('indexDpm');
+                Route::post('/dpm', [[UserPemilwaController::class, 'storeDpm']])->name('storeDpm');
+
+                // After
+                Route::view('/after', 'suara.after')->name('after');
+            });
 
         Route::get('/testing-session-open', [UserAuthController::class, 'testingSessionAuth']);
-        Route::get('/testing-session-close', [UserAuthController::class, 'closeAuth']);
-
-        // Pemilihan Controller
     });
 
 

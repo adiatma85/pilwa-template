@@ -22,14 +22,28 @@ class AuthController extends Controller
             'nim' => $request->nim,
             'password' => $request->password,
         ];
-        $request->session()->put('nim', $request->nim);
-        return $this->siamAuth($credentials);
+        $itemStatusAuth = $this->siamAuth($credentials);
+
+        // If wrong
+        if (!$itemStatusAuth->success) {
+            return redirect()->route('user.login');
+        }
+
+        // If guduk arek fk
+        if ($itemStatusAuth->data['fakultas'] != 'Kedokteran' && !env('APP_DEBUG')) {
+            return redirect()->route('user.login');
+        }
+
+        // Set session
+        $request->session()->put('sub', $request->nim);
+
+        // Set to index bem
+        return redirect()->route('user.kotak-suara.indexBem');
     }
 
     public function logout(Request $request)
     {
         $request->session()->flush();
-        // return view buat ucapin terima kasih telah berkontribusi
     }
 
     public function testingSessionAuth(Request $request)
@@ -37,10 +51,5 @@ class AuthController extends Controller
         return response()->json([
             'nim' => $request->session()->get('nim', 'nim kosong'),
         ]);
-    }
-
-    public function closeAuth(Request $request)
-    {
-        $request->session()->flush();
     }
 }
