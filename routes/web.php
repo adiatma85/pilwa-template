@@ -121,11 +121,11 @@ Route::as('user.')
 
                 //  BEM
                 Route::get('/bem', [UserPemilwaController::class, 'indexBem'])->name('indexBem');
-                Route::post('/bem', [[UserPemilwaController::class, 'storeBem']])->name('storeBem');
+                Route::post('/bem', [UserPemilwaController::class, 'storeBem'])->name('storeBem');
 
                 // // DPM
                 Route::get('/dpm', [UserPemilwaController::class, 'indexDpm'])->name('indexDpm');
-                Route::post('/dpm', [[UserPemilwaController::class, 'storeDpm']])->name('storeDpm');
+                Route::post('/dpm', [UserPemilwaController::class, 'storeDpm'])->name('storeDpm');
 
                 // After
                 Route::view('/after', 'suara.after')->name('after');

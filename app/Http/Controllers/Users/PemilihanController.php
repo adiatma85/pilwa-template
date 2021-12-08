@@ -34,6 +34,10 @@ class PemilihanController extends Controller
             'type' => 'BEM',
         ]);
 
+        return response()->json([
+            'test' => true
+        ]);
+
         // Redirect to dpm
         return redirect()->route('user.kotak-suara.indexDpm');
     }
